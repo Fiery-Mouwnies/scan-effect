@@ -31,9 +31,6 @@ import { useGSAP } from '@gsap/react';
 import { PostProcessing } from '@/components/post-processing';
 import { ContextProvider, GlobalContext } from '@/context';
 
-import TEXTUREMAP from '@/assets/raw-3.jpg';
-import DEPTHMAP from '@/assets/depth-3.png';
-
 const tomorrow = Tomorrow({
   weight: '600',
   subsets: ['latin'],
@@ -63,7 +60,7 @@ const sdCross = Fn(
 const Scene = () => {
   const { setIsLoading } = useContext(GlobalContext);
 
-  const [rawMap, depthMap] = useTexture([TEXTUREMAP.src, DEPTHMAP.src], () => {
+  const [rawMap, depthMap] = useTexture(['/raw-3.jpg', '/depth-3.png'], () => {
     setIsLoading(false);
     rawMap.colorSpace = THREE.SRGBColorSpace;
   });
@@ -174,7 +171,7 @@ const Html = () => {
             }}
           >
             <div className="flex space-x-2 lg:space-x-6 overflow-hidden">
-              {'Embrace Nature’s Rhythm'.split(' ').map((word, index) => {
+              {'Embrace Nature's Rhythm'.split(' ').map((word, index) => {
                 return (
                   <div data-title key={index}>
                     {word}

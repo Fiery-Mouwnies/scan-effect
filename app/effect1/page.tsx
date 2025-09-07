@@ -26,8 +26,6 @@ import * as THREE from 'three/webgpu';
 import { useGSAP } from '@gsap/react';
 import { GlobalContext, ContextProvider } from '@/context';
 import { PostProcessing } from '@/components/post-processing';
-import TEXTUREMAP from '@/assets/raw-1.png';
-import DEPTHMAP from '@/assets/depth-1.png';
 
 const tomorrow = Tomorrow({
   weight: '600',
@@ -40,7 +38,7 @@ const HEIGHT = 900;
 const Scene = () => {
   const { setIsLoading } = useContext(GlobalContext);
 
-  const [rawMap, depthMap] = useTexture([TEXTUREMAP.src, DEPTHMAP.src], () => {
+  const [rawMap, depthMap] = useTexture(['/raw-1.png', '/depth-1.png'], () => {
     setIsLoading(false);
     rawMap.colorSpace = THREE.SRGBColorSpace;
   });
