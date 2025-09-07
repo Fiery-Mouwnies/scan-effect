@@ -1,6 +1,6 @@
 'use client';
 
-import { WebGPUCanvas } from '@/components/canvas';
+import dynamic from 'next/dynamic';
 import { useAspect, useTexture } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useContext, useMemo } from 'react';
@@ -8,10 +8,10 @@ import { Tomorrow } from 'next/font/google';
 import gsap from 'gsap';
 
 import * as THREE from 'three';
-import { WebGPURenderer } from 'three/examples/jsm/renderers/webgpu/WebGPURenderer.js';
+import { MeshBasicNodeMaterial } from 'three/examples/jsm/nodes/materials/MeshBasicNodeMaterial.js';
 import {
   abs,
-  blendScreen,
+  add,
   float,
   mod,
   mx_cell_noise_float,
@@ -26,6 +26,10 @@ import {
 import { useGSAP } from '@gsap/react';
 import { GlobalContext, ContextProvider } from '@/context';
 import { PostProcessing } from '@/components/post-processing';
+
+const WebGPUCanvas = dynamic(() => import('@/components/canvas').then(mod => ({ default: mod.WebGPUCanvas })), {
+  ssr: false
+});
 
 const tomorrow = Tomorrow({
   weight: '600',
@@ -73,9 +77,9 @@ const Scene = () => {
 
     const mask = dot.mul(flow).mul(vec3(10, 0, 0));
 
-    const final = blendScreen(tMap, mask);
+    const final = add(tMap, mask);
 
-    const material = new THREE.MeshBasicNodeMaterial({
+    const material = new MeshBasicNodeMaterial({
       colorNode: final,
     });
 
