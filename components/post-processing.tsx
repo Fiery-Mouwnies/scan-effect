@@ -2,10 +2,11 @@
 
 import { useFrame, useThree } from '@react-three/fiber';
 import { useMemo } from 'react';
-import { bloom } from 'three/examples/jsm/tsl/display/BloomNode.js';
-import { pass } from 'three/tsl';
+import { BloomNode } from 'three/examples/jsm/nodes/display/BloomNode.js';
+import { pass } from 'three/examples/jsm/nodes/Nodes.js';
+import { WebGPUPostProcessing } from 'three/examples/jsm/renderers/webgpu/WebGPUPostProcessing.js';
 
-import * as THREE from 'three/webgpu';
+import * as THREE from 'three';
 
 export const PostProcessing = ({
   strength = 1,
@@ -17,10 +18,10 @@ export const PostProcessing = ({
   const { gl, scene, camera } = useThree();
 
   const render = useMemo(() => {
-    const postProcessing = new THREE.PostProcessing(gl as any);
+    const postProcessing = new WebGPUPostProcessing(gl as any);
     const scenePass = pass(scene, camera);
     const scenePassColor = scenePass.getTextureNode('output');
-    const bloomPass = bloom(scenePassColor, strength, 0.5, threshold);
+    const bloomPass = new BloomNode(scenePassColor, strength, 0.5, threshold);
 
     const final = scenePassColor.add(bloomPass);
 

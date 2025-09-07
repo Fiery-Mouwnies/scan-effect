@@ -7,6 +7,8 @@ import { useContext, useMemo } from 'react';
 import { Tomorrow } from 'next/font/google';
 import gsap from 'gsap';
 
+import * as THREE from 'three';
+import { WebGPURenderer } from 'three/examples/jsm/renderers/webgpu/WebGPURenderer.js';
 import {
   abs,
   blendScreen,
@@ -17,9 +19,7 @@ import {
   uniform,
   uv,
   vec3,
-} from 'three/tsl';
-
-import * as THREE from 'three/webgpu';
+} from 'three/examples/jsm/nodes/Nodes.js';
 import { useGSAP } from '@gsap/react';
 import { PostProcessing } from '@/components/post-processing';
 import { ContextProvider, GlobalContext } from '@/context';
