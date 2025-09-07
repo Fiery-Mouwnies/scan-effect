@@ -1,3 +1,5 @@
+'use client';
+
 import * as THREE from 'three/webgpu';
 import { Canvas, CanvasProps, extend } from '@react-three/fiber';
 

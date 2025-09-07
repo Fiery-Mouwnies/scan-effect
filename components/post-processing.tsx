@@ -1,3 +1,5 @@
+'use client';
+
 import { useFrame, useThree } from '@react-three/fiber';
 import { useMemo } from 'react';
 import { bloom } from 'three/examples/jsm/tsl/display/BloomNode.js';
