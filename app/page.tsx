@@ -42,6 +42,10 @@ const Scene = () => {
     setIsLoading(false);
     rawMap.colorSpace = THREE.SRGBColorSpace;
   });
+  const [rawMap, depthMap] = useTexture(['/raw-2.png', '/depth-2.png'], () => {
+    setIsLoading(false);
+    rawMap.colorSpace = THREE.SRGBColorSpace;
+  });
 
   const { material, uniforms } = useMemo(() => {
     const uPointer = uniform(new THREE.Vector2(0));
