@@ -38,10 +38,6 @@ const HEIGHT = 900;
 const Scene = () => {
   const { setIsLoading } = useContext(GlobalContext);
 
-  const [rawMap, depthMap] = useTexture(['/raw-1.png', '/depth-1.png'], () => {
-    setIsLoading(false);
-    rawMap.colorSpace = THREE.SRGBColorSpace;
-  });
   const [rawMap, depthMap] = useTexture(['/raw-2.png', '/depth-2.png'], () => {
     setIsLoading(false);
     rawMap.colorSpace = THREE.SRGBColorSpace;
