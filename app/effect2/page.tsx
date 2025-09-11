@@ -8,7 +8,7 @@ import { Tomorrow } from 'next/font/google';
 import gsap from 'gsap';
 
 import * as THREE from 'three';
-import { MeshBasicNodeMaterial } from 'three/examples/jsm/nodes/materials/MeshBasicNodeMaterial.js';
+import { MeshBasicNodeMaterial } from 'three/webgpu';
 import {
   abs,
   add,
@@ -19,7 +19,7 @@ import {
   uniform,
   uv,
   vec3,
-} from 'three/examples/jsm/nodes/Nodes.js';
+} from 'three/webgpu';
 import { useGSAP } from '@gsap/react';
 import { PostProcessing } from '@/components/post-processing';
 import { ContextProvider, GlobalContext } from '@/context';
